@@ -1,0 +1,43 @@
+23:54:17 **** Incremental Build of configuration Debug for project project ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L031xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'cam_config':
+../Core/Src/main.c:474:10: warning: unused variable 'printError' [-Wunused-variable]
+  474 |  uint8_t printError[16];
+      |          ^~~~~~~~~~
+../Core/Src/main.c: In function 'cam_pic':
+../Core/Src/main.c:569:21: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  569 |  uart_buf_len_cam = sprintf(uart_buf_cam, "Picture taken!\n");
+      |                     ^~~~~~~
+../Core/Src/main.c:569:21: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/main.c:21:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+   20 | #include "main.h"
+  +++ |+#include <stdio.h>
+   21 | 
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:643:26: warning: initializer-string for array of 'unsigned char' is too long
+  643 |   uint8_t didntwork[4] = "FAIL\n";
+      |                          ^~~~~~~~
+../Core/Src/main.c:666:20: warning: incompatible implicit declaration of built-in function 'sprintf'
+  666 |     uart_buf_len = sprintf(uart_buf, "sensor init didnt work\n");
+      |                    ^~~~~~~
+../Core/Src/main.c:666:20: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/main.c:674:19: warning: incompatible implicit declaration of built-in function 'sprintf'
+  674 |    uart_buf_len = sprintf(uart_buf, "cam config didnt work\n");
+      |                   ^~~~~~~
+../Core/Src/main.c:674:19: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/main.c:688:19: warning: incompatible implicit declaration of built-in function 'sprintf'
+  688 |    uart_buf_len = sprintf(uart_buf,
+      |                   ^~~~~~~
+../Core/Src/main.c:688:19: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+arm-none-eabi-gcc -o "project.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\osamaatta\Desktop\embeddedDesignProject\project\STM32L031K6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: project.elf
+ 
+arm-none-eabi-size   project.elf 
+arm-none-eabi-objdump -h -S  project.elf  > "project.list"
+   text	   data	    bss	    dec	    hex	filename
+  23920	    120	   2032	  26072	   65d8	project.elf
+Finished building: default.size.stdout
+ 
+Finished building: project.list
+ 
