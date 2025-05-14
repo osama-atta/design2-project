@@ -1,0 +1,38 @@
+Name     Decoder ;
+PartNo   p22v10 ;
+Date     3/19/2022 ;
+Revision 01 ;
+Designer Engineer ;
+Company  University of Nebraska-Lincoln ;
+Assembly None ;
+Location  ;
+Device   p22v10 ;
+
+/* *************** INPUT PINS *********************/
+PIN 2 = PSEN                         ; /*                                 */ 
+PIN 3 = A15                          ; /*                                 */ 
+PIN 5 = A14                          ; /*                                 */ 
+PIN 6 = IOM                          ; /*                                 */
+PIN 10 = WR                          ; /*                                 */ 
+
+/* *************** OUTPUT PINS *********************/
+PIN 14 = CS_ROM1                        ; /*                                 */ 
+PIN 15 = CS_ROM2                        ; /*                                 */ 
+PIN 16 = CS_RAM1                        ; /*                                 */ 
+PIN 17 = CS_RAM2                        ; /*                                 */ 
+PIN 20 = CS_SEG                         ; /*                                 */ 
+PIN 19 = CS_LCD                         ; /*                                 */
+PIN 21 = CS_PHOT                        ;
+PIN 22 = CS_TEMP                        ;
+
+
+/*********** Equations ***********/
+CS_RAM1  = !(PSEN & !A15 & !IOM)                ;/*                                 */ 
+CS_RAM2  = !(PSEN & A15 & !IOM)                 ;/*                                 */ 
+CS_ROM1  = !(!PSEN & !A15)                      ;/*                                 */ 
+CS_ROM2  = !(!PSEN & A15)                       ;/*                                 */ 
+CS_SEG   = PSEN & A15 & IOM & !A14              ;/*                                 */
+CS_LCD   = !(PSEN & !A15 & IOM & A14)           ;/*                                 */
+CS_PHOT  = !(PSEN & !A15 & IOM & !A14)          ;
+CS_TEMP  = !(PSEN & A15 & IOM & A14)            ;
+
